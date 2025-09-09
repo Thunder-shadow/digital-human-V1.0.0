@@ -11,7 +11,7 @@ const inter = Inter({subsets: ['latin']});
 
 export const metadata: Metadata = {
   title: '鱼狐灵伴',
-  icons: 'favicon.icon',
+  icons: 'favicon.ico',
 };
 
 export default async function RootLayout({
@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className='dark'>
       <head>
-        <script src={getSrcPath('sentio/core/live2dcubismcore.min.js')} />
+        <script src="http://localhost:8880/sentio/core/live2dcubismcore.min.js" />
       </head>
       <body className={clsx(inter.className)}>
         <NextIntlClientProvider messages={messages}>

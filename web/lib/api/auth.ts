@@ -12,10 +12,10 @@ export interface RegisterRequest {
   verifyCode: string;  
 }  
   
-export const authApi = {  
-  login: (data: LoginRequest) => post('/auth/login', data),  
-  register: (data: RegisterRequest) => post('/auth/register', data),  
-  sendCode: (mobile: string) => post('/auth/send-code', { mobile }),  
-  logout: () => post('/auth/logout'),  
-  refreshToken: () => post('/auth/refresh')  
+export const authApi = {    
+  login: (data: LoginRequest) => post('/adh/auth/login', data),    
+  register: (data: RegisterRequest) => post('/adh/auth/register', data),    
+  sendCode: (mobile: string) => post('/adh/auth/send-code', { mobile }),    
+  logout: () => post('/adh/auth/logout'),    
+  refreshToken: () => post('/adh/auth/refresh')    
 };
