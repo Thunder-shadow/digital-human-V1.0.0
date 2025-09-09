@@ -68,7 +68,7 @@ export default function LoginModal({
       backdrop="blur"  
     >  
       <ModalContent>  
-        {(onClose) => (  
+        {(onClose: () => void) => (  
           <>  
             <ModalHeader className="flex flex-col gap-1">  
               <h2 className="text-xl font-bold">{t('loginWelcome')}</h2>  

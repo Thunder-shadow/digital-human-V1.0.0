@@ -15,4 +15,8 @@ requests>=2.32.3
 uvicorn>=0.32.1
 # wave>=0.0.2
 yacs>=0.1.8
+fastapi  
+sqlalchemy  
+psycopg2-binary  
+python-multipart
 # git+https://github.com/aliyun/alibabacloud-nls-python-sdk.git@master#egg=alibabacloud-nls-python-sdk

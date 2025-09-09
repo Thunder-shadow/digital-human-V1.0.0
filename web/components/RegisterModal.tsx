@@ -14,7 +14,8 @@ import {
   Divider  
 } from "@heroui/react";  
 import { useTranslations } from 'next-intl';  
-import { post } from '@/lib/api/requests';  
+import { post } from '@/lib/api/requests';
+import TermsModal from './TermsModal';  
   
 interface RegisterModalProps {  
   isOpen: boolean;  
@@ -29,28 +30,15 @@ export default function RegisterModal({
 }: RegisterModalProps) {  
   const t = useTranslations('Login');  
   const [formData, setFormData] = useState({  
-    username: '',  
+    username: '',
+    email: '',  
     password: '',  
     confirmPassword: '',  
-    mobileNumber: '',  
-    verifyCode: ''  
+    mobileNumber: '' 
   });  
   const [agreedToTerms, setAgreedToTerms] = useState(false);  
-  const [isLoading, setIsLoading] = useState(false);  
-  const [codeSent, setCodeSent] = useState(false);  
-  
-  const handleSendCode = async () => {  
-    if (!formData.mobileNumber) return;  
-      
-    try {  
-      await post('/auth/send-code', {  
-        mobile: formData.mobileNumber  
-      });  
-      setCodeSent(true);  
-    } catch (error) {  
-      console.error('Send code failed:', error);  
-    }  
-  };  
+  const [isLoading, setIsLoading] = useState(false);
+  const [termsModal, setTermsModal] = useState<'terms' | 'privacy' | null>(null);      
   
   const handleRegister = async () => {  
     if (!agreedToTerms) {  
@@ -68,8 +56,7 @@ export default function RegisterModal({
       const response = await post('/auth/register', {  
         username: formData.username,  
         password: formData.password,  
-        mobile: formData.mobileNumber,  
-        verifyCode: formData.verifyCode  
+        mobile: formData.mobileNumber,    
       });  
         
       alert(t('registerSuccess'));  
@@ -90,7 +77,7 @@ export default function RegisterModal({
       size="lg"  
     >  
       <ModalContent>  
-        {(onClose) => (  
+        {(onClose: () => void) => (  
           <>  
             <ModalHeader className="flex flex-col gap-1">  
               <h2 className="text-xl font-bold">{t('signupGuide')}</h2>  
@@ -103,32 +90,7 @@ export default function RegisterModal({
                 variant="bordered"  
                 value={formData.username}  
                 onChange={(e) => setFormData({...formData, username: e.target.value})}  
-              />  
-              <div className="flex gap-2">  
-                <Input  
-                  label={t('mobileNumber')}  
-                  placeholder={t('mobileNumber')}  
-                  variant="bordered"  
-                  value={formData.mobileNumber}  
-                  onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})}  
-                  className="flex-1"  
-                />  
-                <Button   
-                  variant="bordered"  
-                  onPress={handleSendCode}  
-                  isDisabled={!formData.mobileNumber || codeSent}  
-                  className="min-w-24"  
-                >  
-                  {t('sencCode')}  
-                </Button>  
-              </div>  
-              <Input  
-                label={t('verifyCode')}  
-                placeholder={t('verifyCode')}  
-                variant="bordered"  
-                value={formData.verifyCode}  
-                onChange={(e) => setFormData({...formData, verifyCode: e.target.value})}  
-              />  
+              />    
               <Input  
                 label={t('password')}  
                 placeholder={t('password')}  
@@ -145,18 +107,39 @@ export default function RegisterModal({
                 value={formData.confirmPassword}  
                 onChange={(e) => setFormData({...formData, confirmPassword: e.target.value})}  
               />  
-              <Checkbox   
-                isSelected={agreedToTerms}  
-                onValueChange={setAgreedToTerms}  
-                size="sm"  
-              >  
-                <span className="text-sm">  
-                  {t('agree')}  
-                  <Link size="sm" href="#">{t('termsOfService')}</Link>  
-                  {' '}和{' '}  
-                  <Link size="sm" href="#">{t('privacyPolicy')}</Link>  
-                </span>  
-              </Checkbox>  
+            <Checkbox   
+              isSelected={agreedToTerms}  
+              onValueChange={setAgreedToTerms}  
+              size="sm"  
+            >
+              <span className="text-sm">
+                {t('agree')}
+                <Button
+                  variant="light"
+                  size="sm"
+                  onPress={() => setTermsModal('terms')}
+                  className="p-0 h-auto min-w-0"
+                >
+                  {t('termsOfService')}
+                </Button>
+                {' '}和{' '}
+                <Button
+                  variant="light"
+                  size="sm"
+                  onPress={() => setTermsModal('privacy')}
+                  className="p-0 h-auto min-w-0"
+                >
+                  {t('privacyPolicy')}
+                </Button>
+              </span>
+            </Checkbox>
+
+              {/* 添加TermsModal */}
+              <TermsModal
+                isOpen={termsModal !== null}
+                onOpenChange={(open) => !open && setTermsModal(null)}
+                type={termsModal || 'terms'}
+              />
             </ModalBody>  
             <ModalFooter className="flex flex-col gap-2">  
               <Button   
