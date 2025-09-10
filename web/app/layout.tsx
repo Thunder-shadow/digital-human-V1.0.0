@@ -26,7 +26,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className='dark'>
       <head>
-        <script src="http://localhost:8880/sentio/core/live2dcubismcore.min.js" />
+        <script src="/sentio/core/live2dcubismcore.min.js" />
       </head>
       <body className={clsx(inter.className)}>
         <NextIntlClientProvider messages={messages}>

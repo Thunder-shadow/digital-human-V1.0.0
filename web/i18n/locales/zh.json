@@ -43,6 +43,8 @@
     "newUsername": "新用户名",
     "editUsername": "编辑用户名",
     "password": "密码",
+    "email": "邮箱",  
+    "emailPlaceholder": "请输入邮箱地址" ,
     "register": "注册",
     "forgot": "忘记密码？",
     "loginWelcome": "嘿，好久不见！",
@@ -74,8 +76,8 @@
   },
   "Products": {
     "sentio": {
-      "enTitle": "Sentio",
-      "zhTitle": "遥以心照",
+      "enTitle": "Animapiscis",
+      "zhTitle": "鱼狐灵伴",
       "create": {
         "title": "创建",
         "name": "应用名字",

@@ -17,7 +17,7 @@ class RegisterRequest(BaseModel):
     username: str  
     password: str  
     mobile: str  
-    verifyCode: str  
+    email: str  
   
 class SendCodeRequest(BaseModel):  
     mobile: str  
@@ -36,12 +36,6 @@ def generate_token():
   
 @router.post("/register", response_model=AuthResponse)  
 async def register(request: RegisterRequest, db: Session = Depends(get_db)):  
-    # 验证验证码  
-    if request.mobile not in verification_codes or verification_codes[request.mobile] != request.verifyCode:  
-        raise HTTPException(  
-            status_code=status.HTTP_400_BAD_REQUEST,  
-            detail="验证码错误或已过期"  
-        )  
       
     # 检查用户名是否已存在  
     if db.query(User).filter(User.username == request.username).first():  
@@ -56,20 +50,25 @@ async def register(request: RegisterRequest, db: Session = Depends(get_db)):
             status_code=status.HTTP_400_BAD_REQUEST,  
             detail="手机号已注册"  
         )  
+
+    # 检查邮箱是否已存在（新增）  
+    if db.query(User).filter(User.email == request.email).first():  
+        raise HTTPException(  
+            status_code=status.HTTP_400_BAD_REQUEST,  
+            detail="邮箱已注册"  
+        ) 
       
     # 创建新用户  
     user = User(  
         username=request.username,  
-        mobile=request.mobile  
+        mobile=request.mobile,
+        email=request.email
     )  
     user.set_password(request.password)  
       
     db.add(user)  
     db.commit()  
-    db.refresh(user)  
-      
-    # 清除验证码  
-    del verification_codes[request.mobile]  
+    db.refresh(user)    
       
     return AuthResponse(  
         token=generate_token(),  

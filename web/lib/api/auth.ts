@@ -9,7 +9,7 @@ export interface RegisterRequest {
   username: string;  
   password: string;  
   mobile: string;  
-  verifyCode: string;  
+  email: string;  
 }  
   
 export const authApi = {    

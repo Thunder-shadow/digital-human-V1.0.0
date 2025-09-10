@@ -40,7 +40,7 @@ export default function LoginModal({
       
     setIsLoading(true);  
     try {  
-      const response = await post('/auth/login', {  
+      const response = await post('/adh/auth/login', {  
         username,  
         password  
       });  

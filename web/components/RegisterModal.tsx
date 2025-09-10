@@ -53,10 +53,11 @@ export default function RegisterModal({
       
     setIsLoading(true);  
     try {  
-      const response = await post('/auth/register', {  
+      const response = await post('/adh/auth/register', {  
         username: formData.username,  
         password: formData.password,  
-        mobile: formData.mobileNumber,    
+        mobile: formData.mobileNumber,
+        email: formData.email
       });  
         
       alert(t('registerSuccess'));  
@@ -90,7 +91,15 @@ export default function RegisterModal({
                 variant="bordered"  
                 value={formData.username}  
                 onChange={(e) => setFormData({...formData, username: e.target.value})}  
-              />    
+              />   
+              <Input  
+                label="邮箱"  
+                placeholder="请输入邮箱"  
+                type="email"  
+                variant="bordered"  
+                value={formData.email}  
+                onChange={(e) => setFormData({...formData, email: e.target.value})}  
+              /> 
               <Input  
                 label={t('password')}  
                 placeholder={t('password')}  
@@ -99,6 +108,13 @@ export default function RegisterModal({
                 value={formData.password}  
                 onChange={(e) => setFormData({...formData, password: e.target.value})}  
               />  
+              <Input  
+                label={t('mobileNumber')}  
+                placeholder={t('mobileNumber')}  
+                variant="bordered"  
+                value={formData.mobileNumber}  
+                onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})}  
+              />
               <Input  
                 label={t('confirmPassword')}  
                 placeholder={t('confirmPassword')}  
