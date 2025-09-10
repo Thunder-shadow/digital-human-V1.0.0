@@ -4,7 +4,10 @@ from pydantic import BaseModel
 from database import get_db  
 from models.user import User  
 import secrets  
-import string  
+import string 
+import os
+from datetime import datetime      
+
   
 router = APIRouter(prefix="/auth", tags=["Authentication"])  
   
@@ -62,7 +65,8 @@ async def register(request: RegisterRequest, db: Session = Depends(get_db)):
     user = User(  
         username=request.username,  
         mobile=request.mobile,
-        email=request.email
+        email=request.email,
+        created_at=datetime.utcnow()
     )  
     user.set_password(request.password)  
       

@@ -34,7 +34,7 @@ export default function RegisterModal({
     email: '',  
     password: '',  
     confirmPassword: '',  
-    mobileNumber: '' 
+    mobile: '' 
   });  
   const [agreedToTerms, setAgreedToTerms] = useState(false);  
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +56,7 @@ export default function RegisterModal({
       const response = await post('/adh/auth/register', {  
         username: formData.username,  
         password: formData.password,  
-        mobile: formData.mobileNumber,
+        mobile: formData.mobile,
         email: formData.email
       });  
         
@@ -109,11 +109,11 @@ export default function RegisterModal({
                 onChange={(e) => setFormData({...formData, password: e.target.value})}  
               />  
               <Input  
-                label={t('mobileNumber')}  
-                placeholder={t('mobileNumber')}  
+                label={t('mobile')}  
+                placeholder={t('mobile')}  
                 variant="bordered"  
-                value={formData.mobileNumber}  
-                onChange={(e) => setFormData({...formData, mobileNumber: e.target.value})}  
+                value={formData.mobile}  
+                onChange={(e) => setFormData({...formData, mobile: e.target.value})}  
               />
               <Input  
                 label={t('confirmPassword')}  
