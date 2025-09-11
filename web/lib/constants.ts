@@ -19,7 +19,7 @@ export const JOIN_US_URL = "https://fcn6bk9rfo7w.feishu.cn/share/base/form/shrcn
 export const FEEDBACK_URL = "https://fcn6bk9rfo7w.feishu.cn/share/base/form/shrcn2QSWMxWTvkea9vpmEEP1qd"
 // sentio
 export const SENTIO_GUIDE_URL = "https://fcn6bk9rfo7w.feishu.cn/docx/AwyIdghIzo5Dg6xpxXYcRZGynf2?from=from_copylink"
-export const SENTIO_GITHUB_URL = "https://github.com/wan-h/awesome-digital-human-live2d"
+export const SENTIO_GITHUB_URL = "https://github.com/Thunder-shadow/awsome-digital-human.git"
 export const SENTIO_BACKGROUND_PATH = "sentio/backgrounds/"
 export const SENTIO_BACKGROUND_STATIC_PATH = "sentio/backgrounds/static"
 export const SENTIO_BACKGROUND_DYNAMIC_PATH = "sentio/backgrounds/dynamic"
