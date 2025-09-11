@@ -6,6 +6,12 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.startsWith('/sentio')) {  
     // 检查认证状态  
     const token = request.cookies.get('auth-token')?.value;  
+
+    console.log('Middleware check:', {  
+      path: request.nextUrl.pathname,  
+      hasToken: !!token,  
+      cookies: request.cookies.getAll()  
+    });
       
     if (!token) {  
       // 未登录，重定向到登录页面  

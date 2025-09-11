@@ -20,6 +20,7 @@ export function useAuth() {
   
   const login = (token: string) => {  
     localStorage.setItem('token', token);  
+    document.cookie = `auth-token=${token}; path=/; max-age=86400`;
     setIsAuthenticated(true);  
     router.push('/sentio');  
   };  

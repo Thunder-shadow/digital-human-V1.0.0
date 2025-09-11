@@ -49,7 +49,8 @@ export default function LoginModal({
       if (onLoginSuccess) {  
         onLoginSuccess(response.token);  
       } else {  
-        localStorage.setItem('token', response.token);  
+        localStorage.setItem('token', response.token);
+        document.cookie = `auth-token=${response.token}; path=/; max-age=86400`;   
         onOpenChange(false);  
         window.location.reload();  
       }  
