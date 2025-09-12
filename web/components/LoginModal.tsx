@@ -36,7 +36,16 @@ export default function LoginModal({
   const [isLoading, setIsLoading] = useState(false);  
   
   const handleLogin = async () => {  
-    if (!username || !password) return;  
+    // 输入验证  
+    if (!username.trim()) {  
+      alert(t('errors.usernameRequired'));  
+      return;  
+    }  
+      
+    if (!password.trim()) {  
+      alert(t('errors.passwordRequired'));  
+      return;  
+    }  
       
     setIsLoading(true);  
     try {  
@@ -55,7 +64,8 @@ export default function LoginModal({
         window.location.reload();  
       }  
     } catch (error) {  
-      console.error('Login failed:', error);  
+      console.error('Login failed:', error); 
+      alert(t('errors.loginFailed'));
     } finally {  
       setIsLoading(false);  
     }  

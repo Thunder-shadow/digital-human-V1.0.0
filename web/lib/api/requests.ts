@@ -41,12 +41,12 @@ export function errorHandler(error: Error, signal: AbortSignal | null = null ) {
 }
 
 export async function responseParse(response: Response): Promise<any> {
-  // if (response.status != 200) {
-    // response.text().then((text) => {
-    //   errorHandler(new Error(text));
-    // });
-    // throw new Error("Internal Server Error");
-  // }
+  if (response.status >= 400) {
+    response.text().then((text) => {
+      errorHandler(new Error(text));
+    });
+    throw new Error("Internal Server Error");
+  }
 
   return response.json().then((data) => {
     if (data.code && data.code != 0) {
