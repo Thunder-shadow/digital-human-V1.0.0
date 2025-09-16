@@ -4,7 +4,7 @@ from models.user import Base
 import os  
   
 # PostgreSQL 连接配置  
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:qq123456@host.docker.internal:5432/postgres")  
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgres:Qq123456@101.126.22.101:5432/postgres")  
   
 engine = create_engine(DATABASE_URL)  
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)  
