@@ -141,7 +141,7 @@
       "loading": "加载中",
       "items": {
         "setting": "设置",
-        "gallery": "画廊",
+        "gallery": "灵伴龛",
         "publish": "发布/更新",
         "shareDifyTip": "本地部署的Dify无法分享!",
         "theme": "限定主题",
@@ -174,7 +174,7 @@
         }
       },
       "gallery": {
-        "title": "画廊",
+        "title": "灵伴龛",
         "backgrounds": {
           "title": "背景",
           "enable": "启用",

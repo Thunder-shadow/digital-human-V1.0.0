@@ -14,19 +14,18 @@ export default function LoginPage(): JSX.Element {
     }  
   }, [router]);  
   
-  return (  
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">  
-      <div className="max-w-md w-full space-y-8">  
-        <div className="text-center">  
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">  
-            欢迎使用数字人交互系统  
-          </h2>  
-          <p className="mt-2 text-sm text-gray-600">  
-            请登录以继续使用  
-          </p>  
+  return (    
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">    
+      <div className="max-w-md w-full space-y-8">      
+        <div className="text-center">    
+          <img   
+            src="http://101.126.22.101:9000/digital-human/image-resources/login_Interface.png"  
+            alt="登录界面图片"  
+            className="mx-auto max-w-full h-auto"  
+          />  
         </div>  
-        <AuthManager />  
-      </div>  
+        <AuthManager />    
+      </div>    
     </div>  
   );  
 }
