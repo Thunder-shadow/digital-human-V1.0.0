@@ -43,3 +43,66 @@ export const SENTIO_VOICE_TEST_ZH: string[] = ["今天最浪漫的事就是遇�
 export const SENTIO_VOICE_TEST_EN: string[] = ["Someone said you were looking for me?"]
 export const SENTIO_CHATMODE_DEFULT = PROTOCOL.CHAT_MODE.DIALOGUE
 export const SENTIO_THENE_DEFAULT = PROTOCOL.APP_TYPE.FREEDOM
+export interface CharacterPreset {  
+  character: string;  
+  background: string;  
+  backgroundType: 'static' | 'dynamic';  
+  difyAgent: {  
+    api_server: string;  
+    api_key: string;  
+    username: string;  
+  };  
+  ttsConfig: {  
+    voice: string;  
+    speed: number;  
+    pitch: number;  
+  };  
+}  
+  
+export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {  
+  "HaruGreeter": {  
+    character: "HaruGreeter",  
+    background: "夜晚街道.jpg",  
+    backgroundType: "static",  
+    difyAgent: {  
+      api_server: "http://101.126.22.101/v1",  
+      api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
+      username: "HaruUser"  
+    },  
+    ttsConfig: {  
+      voice: "Anna（女声）",  
+      speed: 1.0,  
+      pitch: 1.0  
+    }  
+  },  
+  "Chitose": {  
+    character: "Chitose",  
+    background: "赛博朋克.jpg",  
+    backgroundType: "static",  
+    difyAgent: {  
+      api_server: "http://101.126.22.101/v1",  
+      api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
+      username: "ChitoseUser"  
+    },  
+    ttsConfig: {  
+      voice: "Anna（女声）",  
+      speed: 1.1,  
+      pitch: 0.9  
+    }  
+  },  
+  "Shizuku": {  
+    character: "Shizuku",  
+    background: "插画.jpg",  
+    backgroundType: "static",  
+    difyAgent: {  
+      api_server: "http://101.126.22.101/v1",  
+      api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
+      username: "ShizukuUser"  
+    },  
+    ttsConfig: {  
+      voice: "Anna（女声）",  
+      speed: 0.9,  
+      pitch: 1.1  
+    }  
+  }
+};

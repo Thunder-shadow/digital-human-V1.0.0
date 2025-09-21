@@ -19,7 +19,7 @@ export default function LoginPage(): JSX.Element {
       <div className="max-w-md w-full space-y-8">      
         <div className="text-center">    
           <img   
-            src="http://101.126.22.101:9000/digital-human/image-resources/login_Interface.png"  
+            src="http://101.126.22.101:9000/digital-human/image-resources/login_img.png"  
             alt="登录界面图片"  
             className="mx-auto max-w-full h-auto"  
           />  

@@ -27,6 +27,29 @@ export function useAppConfig() {
     const { clearChatRecord } = useChatRecordStore();
     const { setLive2dCharacter } = useLive2D();
 
+    const applyCharacterPreset = (characterName: string) => {  
+        const preset = CONSTANTS.CHARACTER_PRESETS[characterName];  
+        if (!preset) return false;  
+    
+        // 应用背景设置  
+        const backgroundResource: ResourceModel = {  
+            resource_id: `${preset.backgroundType}_${preset.background}`,  
+            type: RESOURCE_TYPE.BACKGROUND,  
+            name: preset.background.split('.')[0],  
+            link: getSrcPath(`${preset.backgroundType === 'static' ? CONSTANTS.SENTIO_BACKGROUND_STATIC_PATH : CONSTANTS.SENTIO_BACKGROUND_DYNAMIC_PATH}/${preset.background}`),  
+        };  
+        setBackground(backgroundResource);  
+    
+        // 应用智能体设置  
+        setAgentEngine('Dify');  
+        setAgentSettings(preset.difyAgent);  
+    
+        // 应用TTS设置  
+        setTtsEngine('Dify');  
+        setTtsSettings(preset.ttsConfig);  
+    
+        return true;  
+    };
     const setCurrentCharacter = (character: ResourceModel | null) => {
         if (character == null) {
             const model = CONSTANTS.SENTIO_CHARACTER_DEFAULT;
@@ -139,5 +162,5 @@ export function useAppConfig() {
         
     }
 
-    return { getAppConfig, setAppConfig, resetAppConfig, resetAppEngine, setCurrentTheme }
+    return { getAppConfig, setAppConfig, resetAppConfig, resetAppEngine, setCurrentTheme, applyCharacterPreset }
 }

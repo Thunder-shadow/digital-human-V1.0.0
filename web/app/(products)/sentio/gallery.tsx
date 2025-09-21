@@ -24,7 +24,7 @@ import {
     useDraggable,
     addToast
 } from "@heroui/react";
-import { useSentioBackgroundStore, useSentioCharacterStore } from '@/lib/store/sentio';
+import { useSentioBackgroundStore, useSentioCharacterStore, useSentioAgentStore, useSentioTtsStore} from '@/lib/store/sentio';
 import { 
     BACKGROUND_TYPE, 
     ResourceModel, 
@@ -42,68 +42,94 @@ interface ResourceModelExtend extends ResourceModel {
     sub_type: BACKGROUND_TYPE | CHARACTER_TYPE
 }
 
-function ImagesList({
-    current,
-    descs,
-    enable,
-    showType,
-    choiceFunc
-}: {
-    current: ResourceModel | null,
-    descs: ResourceModelExtend[],
-    enable: boolean,
-    showType: BACKGROUND_TYPE | CHARACTER_TYPE,
-    choiceFunc: (index: number | null) => void,
-}) {
-    const allTypes = [BACKGROUND_TYPE.ALL, CHARACTER_TYPE.ALL];
-    return (
-        <div className="gap-6 grid grid-cols-2 sm:grid-cols-4 max-h-96">
-            {enable && descs.map((item, index) => (
-                (item.sub_type == showType || allTypes.includes(showType)) && <Card
-                    shadow="md"
-                    key={index}
-                    isPressable
-                    onPress={() => choiceFunc(index)}
-                    className={clsx(
-                        "text-small justify-between h-fit",
-                        {
-                            'text-blue-600 border-2 border-indigo-600': !!current && item.resource_id == current.resource_id,
-                        }
-                    )}
-                >
-                    <CardBody className="overflow-visible p-0">
-                        {
-                            item.link.endsWith('.mp4') ?
-                            <video 
-                                className='w-full object-cover h-[120px]' 
-                                autoPlay 
-                                muted 
-                                loop
-                                poster={getSrcPath('image/loading.png')}
-                                src={item.link}
-                                style={{ pointerEvents: 'none' }}
-                            />
-                            :
-                            <Image
-                                shadow="sm"
-                                radius="lg"
-                                width="100%"
-                                alt={item.name}
-                                className="w-full object-cover h-[120px]"
-                                src={item.link}
-                                isZoomed={true}
-                                style={{ objectFit: "cover" }}
-                            />
-                        }
-                        
-                    </CardBody>
-                    <CardFooter className="text-small justify-between">
-                        <b>{item.name}</b>
-                    </CardFooter>
-                </Card>
-            ))}
-        </div>
-    )
+function ImagesList({  
+    current,  
+    descs,  
+    enable,  
+    showType,  
+    choiceFunc,  
+    showPresetIndicator = false,
+    onApplyPreset 
+}: {  
+    current: ResourceModel | null,  
+    descs: ResourceModelExtend[],  
+    enable: boolean,  
+    showType: BACKGROUND_TYPE | CHARACTER_TYPE,  
+    choiceFunc: (index: number | null, shouldExecute?: boolean) => void,  
+    showPresetIndicator?: boolean,
+    onApplyPreset?: (name: string) => void  
+}) {  
+    const allTypes = [BACKGROUND_TYPE.ALL, CHARACTER_TYPE.ALL];  
+    return (  
+        <div className="gap-6 grid grid-cols-2 sm:grid-cols-4 max-h-96">  
+            {enable && descs.map((item, index) => (  
+                (item.sub_type == showType || allTypes.includes(showType)) && <Card  
+                    shadow="md"  
+                    key={index}  
+                    isPressable  
+                    onPress={() => choiceFunc(index, true)}  
+                    className={clsx(  
+                        "text-small justify-between h-fit relative",  
+                        {  
+                            'text-blue-600 border-2 border-indigo-600': !!current && item.resource_id == current.resource_id,  
+                        }  
+                    )}  
+                >  
+                    <CardBody className="overflow-visible p-0">  
+                        {/* 预设指示器 */}  
+                        {showPresetIndicator && CONSTANTS.CHARACTER_PRESETS[item.name] && (  
+                            <div className="absolute top-2 right-2 z-10 bg-green-500 text-white text-xs px-2 py-1 rounded-full">  
+                                预设  
+                            </div>  
+                        )}  
+                          
+                        {/* 现有的图片/视频显示代码保持不变 */}  
+                        {  
+                            item.link.endsWith('.mp4') ?  
+                            <video   
+                                className='w-full object-cover h-[120px]'   
+                                autoPlay   
+                                muted   
+                                loop  
+                                poster={getSrcPath('image/loading.png')}  
+                                src={item.link}  
+                                style={{ pointerEvents: 'none' }}  
+                            />  
+                            :  
+                            <Image  
+                                shadow="sm"  
+                                radius="lg"  
+                                width="100%"  
+                                alt={item.name}  
+                                className="w-full object-cover h-[120px]"  
+                                src={item.link}  
+                                isZoomed={true}  
+                                style={{ objectFit: "cover" }}  
+                            />  
+                        }  
+                    </CardBody>  
+                    <CardFooter className="text-small justify-between">  
+                        <b>{item.name}</b>  
+                        {showPresetIndicator && CONSTANTS.CHARACTER_PRESETS[item.name] && (  
+                            <Button 
+                                size="sm" 
+                                color="success" 
+                                variant="solid"
+                                // 当按钮被点击时，调用传入的 onApplyPreset 函数
+                                onPress={() => {
+                                    onApplyPreset && onApplyPreset(item.name);
+                                    // 调用 choiceFunc 但不执行实际操作
+                                    choiceFunc(index, false);
+                                    }}
+                            >
+                                一键配置
+                            </Button>  
+                        )}  
+                    </CardFooter>  
+                </Card>  
+            ))}  
+        </div>  
+    )  
 }
 
 function BackgroundsTab() {
@@ -197,13 +223,51 @@ function CharactersTab() {
     const t = useTranslations('Products.sentio.gallery.characters');
     const { character, setCharacter } = useSentioCharacterStore();
     const [characterType, setCharacterType] = useState<string>(t('all'));
-    const { setLive2dCharacter } = useLive2D();
+    const { setLive2dCharacter } = useLive2D();    
+    const { setBackground } = useSentioBackgroundStore();  
+    const { setEngine: setAgentEngine, setSettings: setAgentSettings } = useSentioAgentStore();  
+    const { setEngine: setTtsEngine, setSettings: setTtsSettings } = useSentioTtsStore();   
     // 映射关系
     const characterTypeMap = {
         [t('all')]: CHARACTER_TYPE.ALL,
         [t('ip')]: CHARACTER_TYPE.IP,
         [t('free')]: CHARACTER_TYPE.FREE,
     };
+
+    const applyCharacterPreset = (characterName: string) => {  
+        const preset = CONSTANTS.CHARACTER_PRESETS[characterName];  
+        if (!preset) {  
+            console.warn(`No preset found for character: ${characterName}`);  
+            return;  
+        }  
+  
+        // 设置背景  
+        const backgroundResource: ResourceModelExtend = {  
+            resource_id: `${preset.backgroundType}_${preset.background}`,  
+            type: RESOURCE_TYPE.BACKGROUND,  
+            sub_type: preset.backgroundType === 'static' ? BACKGROUND_TYPE.STATIC : BACKGROUND_TYPE.DYNAMIC,  
+            name: preset.background.split('.')[0],  
+            link: getSrcPath(`${preset.backgroundType === 'static' ? CONSTANTS.SENTIO_BACKGROUND_STATIC_PATH : CONSTANTS.SENTIO_BACKGROUND_DYNAMIC_PATH}/${preset.background}`),  
+        };  
+        setBackground(backgroundResource);  
+  
+        // 设置Dify智能体  
+        setAgentEngine('Dify');  
+        setAgentSettings(preset.difyAgent);  
+  
+        // 设置TTS配置  
+        setTtsEngine('Dify');  
+        setTtsSettings(preset.ttsConfig);  
+  
+        // 显示成功提示  
+        addToast({  
+            title: '角色预设应用成功',  
+            description: `已为 ${characterName} 应用预设配置`, 
+            color: 'success',
+            variant: 'flat'
+        });  
+    };  
+  
     const getCharacters = (type: CHARACTER_TYPE): ResourceModelExtend[] => {
         var characters: ResourceModelExtend[] = [];
         // 静态图 / 动态图 处理
@@ -225,7 +289,9 @@ function CharactersTab() {
     const ipCharacters = useMemo(() => getCharacters(CHARACTER_TYPE.IP), []);
     const characters = [...freeCharacters, ...ipCharacters];
 
-    const choiceCharacter = (index: number | null) => {
+    const choiceCharacter = (index: number | null, shouldExecute = true) => {
+        if (!shouldExecute) return;
+        
         if (index != null) {
             if (character.name == characters[index].name && character.resource_id == characters[index].resource_id) return;
             setCharacter(characters[index]);
@@ -258,12 +324,14 @@ function CharactersTab() {
                     </div>
 
                     <Link className='hover:underline text-sm w-fit ml-2' href={BUSINESS_COOPERATION_URL} color='warning' isExternal>👉 定制人物模型</Link>
-                    <ImagesList
-                        current={character}
-                        descs={characters}
-                        enable={true}
-                        showType={characterTypeMap[characterType]}
-                        choiceFunc={choiceCharacter}
+                    <ImagesList  
+                        current={character}  
+                        descs={characters}  
+                        enable={true}  
+                        showType={characterTypeMap[characterType]}  
+                        choiceFunc={choiceCharacter}  
+                        showPresetIndicator={true}  
+                        onApplyPreset={applyCharacterPreset}
                     />
                 </div>
             </CardBody>

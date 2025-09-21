@@ -192,7 +192,12 @@
           "all": "全部",
           "select": "选择类型",
           "customLink": "自定人物模型",
-          "checkWaitTip": "人物模型正在校验中，请耐心等待"
+          "checkWaitTip": "人物模型正在校验中，请耐心等待",
+          "preset": "预设",  
+          "oneClickConfig": "一键配置",  
+          "presetApplied": "角色预设应用成功",  
+          "presetAppliedDesc": "已为 {character} 应用预设配置",  
+          "noPreset": "该角色暂无预设配置"
         }
       },
       "share": {
