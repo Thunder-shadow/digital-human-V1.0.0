@@ -15,7 +15,6 @@ import {
 import { Tabs, Tab } from "@heroui/react";
 import { useSentioThemeStore } from '@/lib/store/sentio';
 import { BasicTab } from './components/settings/basic';
-import { ASRTab, TTSTab, AgentTab } from './components/settings/engine'
 import { APP_TYPE } from '@/lib/protocol';
 
 function FreedomSettingsTabs() {
@@ -24,15 +23,6 @@ function FreedomSettingsTabs() {
         <Tabs aria-label="Settings" destroyInactiveTabPanel={false}>
             <Tab key='basic' title={t('basic.title')}>
                 <BasicTab />
-            </Tab>
-            <Tab key='asr' title={t('asr.title')}>
-                <ASRTab />
-            </Tab>
-            <Tab key='tts' title={t('tts.title')}>
-                <TTSTab />
-            </Tab>
-            <Tab key='agent' title={t('agent.title')}>
-                <AgentTab />
             </Tab>
         </Tabs>
     )

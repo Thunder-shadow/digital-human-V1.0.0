@@ -111,18 +111,22 @@ function ImagesList({
                     <CardFooter className="text-small justify-between">  
                         <b>{item.name}</b>  
                         {showPresetIndicator && CONSTANTS.CHARACTER_PRESETS[item.name] && (  
-                            <Button 
-                                size="sm" 
-                                color="success" 
-                                variant="solid"
-                                // 当按钮被点击时，调用传入的 onApplyPreset 函数
-                                onPress={() => {
-                                    onApplyPreset && onApplyPreset(item.name);
-                                    // 调用 choiceFunc 但不执行实际操作
-                                    choiceFunc(index, false);
-                                    }}
-                            >
-                                一键配置
+                            <Button   
+                                size="sm"   
+                                color="success"   
+                                variant="shadow"  
+                                startContent={<span className="mr-1.5 animate-pulse">✨</span>}  // 用符号替代图标  
+                                className="bg-gradient-to-r from-emerald-400 to-cyan-500 text-white font-semibold px-4 py-2 
+                                            rounded-lg shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 
+                                            hover:from-emerald-500 hover:to-cyan-600 transition-all duration-300 
+                                            transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 
+                                            focus:ring-emerald-400 focus:ring-offset-2"  
+                                onPress={() => {  
+                                    onApplyPreset && onApplyPreset(item.name);  
+                                    choiceFunc(index, false);  
+                                }}  
+                                >  
+                                灵伴快搭  
                             </Button>  
                         )}  
                     </CardFooter>  

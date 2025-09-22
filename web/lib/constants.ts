@@ -53,9 +53,9 @@ export interface CharacterPreset {
     username: string;  
   };  
   ttsConfig: {  
-    voice: string;  
-    speed: number;  
-    pitch: number;  
+    api_server: string;  
+    api_key: string;  
+    username: string;  
   };  
 }  
   
@@ -70,9 +70,9 @@ export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {
       username: "HaruUser"  
     },  
     ttsConfig: {  
-      voice: "Anna（女声）",  
-      speed: 1.0,  
-      pitch: 1.0  
+      api_server: "http://101.126.22.101/v1",  
+      api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
+      username: "HaruUser"  
     }  
   },  
   "Chitose": {  
@@ -85,9 +85,9 @@ export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {
       username: "ChitoseUser"  
     },  
     ttsConfig: {  
-      voice: "Anna（女声）",  
-      speed: 1.1,  
-      pitch: 0.9  
+      api_server: "http://101.126.22.101/v1",  
+      api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
+      username: "HaruUser"  
     }  
   },  
   "Shizuku": {  
@@ -100,9 +100,9 @@ export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {
       username: "ShizukuUser"  
     },  
     ttsConfig: {  
-      voice: "Anna（女声）",  
-      speed: 0.9,  
-      pitch: 1.1  
+      api_server: "http://101.126.22.101/v1",  
+      api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
+      username: "HaruUser"  
     }  
   }
 };
