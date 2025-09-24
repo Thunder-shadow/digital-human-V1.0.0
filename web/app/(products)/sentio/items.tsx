@@ -70,14 +70,6 @@ export function Items() {
                     >
                         {t('guide')}
                     </DropdownItem>
-
-                    <DropdownItem 
-                        key="open"
-                        startContent={<GithubIcon className="size-6"/>}
-                        onPress={() => window.open(SENTIO_GITHUB_URL, '_blank')}
-                    >
-                        {t('open')}
-                    </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
             <Settings isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)}/>
