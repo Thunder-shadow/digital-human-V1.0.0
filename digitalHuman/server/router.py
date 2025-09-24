@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   api.py
-@Author  :   一力辉 
+@Author  :   张桓瑜 
 '''
 
 from fastapi import FastAPI  

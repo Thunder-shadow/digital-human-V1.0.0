@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   main.py
-@Author  :   一力辉 
+@Author  :   张桓瑜 
 '''
 
 from digitalHuman.utils import logger, config

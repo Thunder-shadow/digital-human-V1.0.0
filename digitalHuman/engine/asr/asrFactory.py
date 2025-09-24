@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   asrFactory.py
-@Author  :   一力辉 
+@Author  :   张桓瑜 
 '''
 
 from ..builder import ASREngines

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   protocol.py
-@Author  :   一力辉 
+@Author  :   张桓瑜 
 '''
 
 import struct

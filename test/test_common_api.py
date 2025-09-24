@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   test_common_api.py
-@Author  :   一力辉 
+@Author  :   张桓瑜 
 '''
 import pytest
 from starlette.testclient import TestClient

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   tencentASR.py
-@Author  :   一力辉
+@Author  :   张桓瑜
 '''
 
 # 参数配置参考: https://cloud.tencent.com/document/api/1093/35646

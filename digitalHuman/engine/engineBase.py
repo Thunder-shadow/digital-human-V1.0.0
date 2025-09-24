@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   engineBase.py
-@Author  :   一力辉 
+@Author  :   张桓瑜 
 '''
 
 from fastapi import WebSocket

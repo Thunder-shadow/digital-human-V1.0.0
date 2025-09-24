@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 '''
 @File    :   api_llm_v0_impl.py
-@Author  :   一力辉
+@Author  :   张桓瑜
 '''
 
 
