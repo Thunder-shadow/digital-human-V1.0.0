@@ -255,6 +255,12 @@ function CharactersTab() {
         };  
         setBackground(backgroundResource);  
   
+    const characterResource = characters.find(char => char.name === preset.character);  
+    if (characterResource) {  
+        setCharacter(characterResource);  
+        setLive2dCharacter(characterResource);  
+    }
+    
         // 设置Dify智能体  
         setAgentEngine('Dify');  
         setAgentSettings(preset.difyAgent);  

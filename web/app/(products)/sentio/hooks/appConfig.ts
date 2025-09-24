@@ -39,7 +39,15 @@ export function useAppConfig() {
             link: getSrcPath(`${preset.backgroundType === 'static' ? CONSTANTS.SENTIO_BACKGROUND_STATIC_PATH : CONSTANTS.SENTIO_BACKGROUND_DYNAMIC_PATH}/${preset.background}`),  
         };  
         setBackground(backgroundResource);  
-    
+        
+        const characterResource: ResourceModel = {  
+            resource_id: `FREE_${preset.character}`,  
+            name: preset.character,  
+            link: getSrcPath(`${CONSTANTS.SENTIO_CHARACTER_FREE_PATH}/${preset.character}/${preset.character}.png`),  
+            type: RESOURCE_TYPE.CHARACTER,  
+        };  
+        setCurrentCharacter(characterResource);
+        
         // 应用智能体设置  
         setAgentEngine('Dify');  
         setAgentSettings(preset.difyAgent);  
