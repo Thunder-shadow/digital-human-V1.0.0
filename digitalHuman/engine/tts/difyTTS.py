@@ -35,6 +35,7 @@ class DifyApiTts(BaseTTSEngine):
         logger.debug(f"[TTS] Engine input: {input.data}")
         response = await httpxAsyncClient.post(API_SERVER + "/text-to-audio", json=payload, headers=headers)
         if response.status_code != 200:
+            logger.error(f"Dify API response: {response.text}")
             raise RuntimeError(f"DifyAPI tts api error: {response.status_code}")
 
         # TODO：这里Dify只能使用同步接口，主动释放异步事件
