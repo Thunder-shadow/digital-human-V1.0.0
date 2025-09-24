@@ -65,12 +65,12 @@ export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {
     background: "夜晚街道.jpg",  
     backgroundType: "static",  
     difyAgent: {  
-      api_server: "http://101.126.22.101/v1",  
+      api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
       username: "HaruUser"  
     },  
     ttsConfig: {  
-      api_server: "http://101.126.22.101/v1",  
+      api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
       username: "HaruUser"  
     }  
@@ -80,12 +80,12 @@ export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {
     background: "赛博朋克.jpg",  
     backgroundType: "static",  
     difyAgent: {  
-      api_server: "http://101.126.22.101/v1",  
+      api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
       username: "ChitoseUser"  
     },  
     ttsConfig: {  
-      api_server: "http://101.126.22.101/v1",  
+      api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
       username: "HaruUser"  
     }  
@@ -95,12 +95,12 @@ export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {
     background: "插画.jpg",  
     backgroundType: "static",  
     difyAgent: {  
-      api_server: "http://101.126.22.101/v1",  
+      api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
       username: "ShizukuUser"  
     },  
     ttsConfig: {  
-      api_server: "http://101.126.22.101/v1",  
+      api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
       username: "HaruUser"  
     }  
