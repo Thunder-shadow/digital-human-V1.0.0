@@ -48,13 +48,9 @@ export const ViewLogicalMaxTop = 2.0;
 // モデルを配置したディレクトリ名の配列
 // ディレクトリ名とmodel3.jsonの名前を一致させておくこと
 export const ModelDir: string[] = [
-  'Haru',
-  'Hiyori',
-  'Mark',
-  'Natori',
-  'Rice',
-  'Mao',
-  'Wanko'
+  '魅璃',
+  '米娅',
+  '星奈'
 ];
 export const ModelDirSize: number = ModelDir.length;
 

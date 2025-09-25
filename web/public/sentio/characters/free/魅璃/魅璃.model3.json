@@ -1,0 +1,18 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "魅璃.moc3",
+		"Textures": [
+			"魅璃.8192/texture_00.png"
+		],
+		"Physics": "魅璃.physics3.json",
+		"DisplayInfo": "魅璃.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}

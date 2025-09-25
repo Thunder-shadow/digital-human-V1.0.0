@@ -23,14 +23,14 @@ export const SENTIO_GITHUB_URL = "https://github.com/Thunder-shadow/awsome-digit
 export const SENTIO_BACKGROUND_PATH = "sentio/backgrounds/"
 export const SENTIO_BACKGROUND_STATIC_PATH = "sentio/backgrounds/static"
 export const SENTIO_BACKGROUND_DYNAMIC_PATH = "sentio/backgrounds/dynamic"
-export const SENTIO_BACKGROUND_STATIC_IMAGES: string[] = ["夜晚街道.jpg", "赛博朋克.jpg", "火影忍者.jpg", "插画.jpg", "艺术.jpg", "简约.jpg", "抽象.jpg"]
+export const SENTIO_BACKGROUND_STATIC_IMAGES: string[] = [ "花海.png", "青玄科技.png", "樱花屋.png"]
 export const SENTIO_BACKGROUND_DYNAMIC_IMAGES: string[] = ["太空站.mp4", "赛博朋克.mp4", "可爱城市.mp4", "悟空.mp4", "火影忍者.mp4", "几何线条.mp4", "公式.mp4"]
 export const SENTIO_CHARACTER_PATH = "sentio/characters/"
 export const SENTIO_CHARACTER_IP_PATH = "sentio/characters/ip"
 export const SENTIO_CHARACTER_FREE_PATH = "sentio/characters/free"
 export const SENTIO_CHARACTER_IP_MODELS: string[] = []
-export const SENTIO_CHARACTER_FREE_MODELS: string[] = ["HaruGreeter", "Haru", "Kei", "Chitose", "Epsilon", "Hibiki", "Hiyori", "Izumi", "Mao", "Rice", "Shizuku", "Tsumiki"]
-export const SENTIO_CHARACTER_DEFAULT = "HaruGreeter"
+export const SENTIO_CHARACTER_FREE_MODELS: string[] = ["魅璃", "米娅", "星奈"]
+export const SENTIO_CHARACTER_DEFAULT = "魅璃"
 export const SENTIO_CHARACTER_DEFAULT_PORTRAIT: string = `${SENTIO_CHARACTER_FREE_PATH}/${SENTIO_CHARACTER_DEFAULT}/${SENTIO_CHARACTER_DEFAULT}.png`
 export const SENTIO_TTS_PUNC: string[] = ['；', '！', '？', '。', '?']
 export const SENTIO_TTS_SENTENCE_LENGTH_MIN = 6
@@ -60,49 +60,49 @@ export interface CharacterPreset {
 }  
   
 export const CHARACTER_PRESETS: { [key: string]: CharacterPreset } = {  
-  "HaruGreeter": {  
-    character: "HaruGreeter",  
-    background: "夜晚街道.jpg",  
+  "魅璃": {  
+    character: "魅璃",  
+    background: "青玄科技.png",  
     backgroundType: "static",  
     difyAgent: {  
       api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
-      username: "HaruUser"  
+      username: "魅璃"  
     },  
     ttsConfig: {  
       api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
-      username: "HaruUser"  
+      username: "魅璃"  
     }  
   },  
-  "Chitose": {  
-    character: "Chitose",  
-    background: "赛博朋克.jpg",  
+  "米娅": {  
+    character: "米娅",  
+    background: "樱花屋.png",  
     backgroundType: "static",  
     difyAgent: {  
       api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
-      username: "ChitoseUser"  
+      username: "米娅"  
     },  
     ttsConfig: {  
       api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
-      username: "HaruUser"  
+      username: "米娅"  
     }  
   },  
-  "Shizuku": {  
-    character: "Shizuku",  
-    background: "插画.jpg",  
+  "星奈": {  
+    character: "星奈",  
+    background: "花海.png",  
     backgroundType: "static",  
     difyAgent: {  
       api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
-      username: "ShizukuUser"  
+      username: "星奈"  
     },  
     ttsConfig: {  
       api_server: "http://101.126.22.101:7080/v1",  
       api_key: "app-ZxafS6AuY9N2M35ubj9CkMdD",  
-      username: "HaruUser"  
+      username: "星奈"  
     }  
   }
 };

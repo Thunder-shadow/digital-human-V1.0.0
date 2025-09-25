@@ -15,7 +15,7 @@ PARAMETERS: [
     type: "string",
     required: false,
     choices: [],
-    default: ""
+    default: "http://101.126.22.101:7080/v1"
   },
   {
     name: "api_key",
@@ -23,7 +23,7 @@ PARAMETERS: [
     type: "string",
     required: false,
     choices: [],
-    default: ""
+    default: "app-ZxafS6AuY9N2M35ubj9CkMdD"
   },
   {
     name: "username",
@@ -31,6 +31,6 @@ PARAMETERS: [
     type: "string",
     required: false,
     choices: [],
-    default: ""
+    default: "魅璃"
   }
 ]

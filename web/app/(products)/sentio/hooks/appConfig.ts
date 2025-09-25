@@ -135,10 +135,16 @@ export function useAppConfig() {
         setTtsEnable(true);
         resetAppEngine();
         clearChatRecord();
-        setBackground(null);
+        const defaultBackground: ResourceModel = {  
+            resource_id: "青玄科技.png",  
+            type: RESOURCE_TYPE.BACKGROUND,  
+            name: "青玄科技",  
+            link: getSrcPath(`${CONSTANTS.SENTIO_BACKGROUND_STATIC_PATH}/青玄科技.png`),  
+        };  
+        setBackground(defaultBackground);
         setCharacter(null);
         setSound(true);
-        setShowThink(true);
+        setShowThink(false);
         setCurrentTheme(CONSTANTS.SENTIO_THENE_DEFAULT);
         setCurrentLipFactor(CONSTANTS.SENTIO_LIPFACTOR_DEFAULT);
         setChatMode(CONSTANTS.SENTIO_CHATMODE_DEFULT);
